@@ -2,7 +2,11 @@ const userModel = require('../models/user');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 
-const SECRET_KEY = 'NOTESAPI';
+const dotenv = require('dotenv');//this will make all the vars system vars present in that file
+
+dotenv.config();
+
+const SECRET_KEY = process.env.SECRET_KEY;
 
 const singup = async(req, res) => {
   const { username, email, password } = req.body;

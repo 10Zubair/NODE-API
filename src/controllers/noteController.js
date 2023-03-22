@@ -1,4 +1,9 @@
 const noteModel = require('../models/note');
+const dotenv = require('dotenv');//this will make all the vars system vars present in that file
+
+dotenv.config();
+
+const SECRET_KEY = process.env.SECRET_KEY;
 
 const createNote = async (req, res) => {
   const { title, description } = req.body;
@@ -7,6 +12,7 @@ const createNote = async (req, res) => {
     description: description,
     userId: req.userId
   });
+
   try {
     await newNote.save();
     res.status(201).json(newNote);
